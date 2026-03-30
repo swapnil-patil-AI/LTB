@@ -20,6 +20,135 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
+# ── Auth ─────────────────────────────────────────────────────────────────────
+if "authenticated" not in st.session_state:
+    st.session_state["authenticated"] = False
+if "login_error" not in st.session_state:
+    st.session_state["login_error"] = False
+
+INFOSYS_LOGO_SVG = """
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 50" width="140" height="40">
+  <!-- Infosys wordmark — simplified geometric recreation -->
+  <rect width="180" height="50" fill="transparent"/>
+  <!-- "i" dot -->
+  <circle cx="8" cy="10" r="4.5" fill="#007CC3"/>
+  <!-- "i" stem + n + f + o + s + y + s letters as simple bold shapes -->
+  <!-- Using text as fallback since full SVG path recreation is complex -->
+  <text x="4" y="42" font-family="Arial Black,Arial,sans-serif" font-size="28"
+        font-weight="900" fill="#007CC3" letter-spacing="-1">infosys</text>
+</svg>
+"""
+
+INFOSYS_FULL_HTML = """
+<div style="display:flex;align-items:center;gap:10px;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 52" width="110" height="28">
+    <rect width="200" height="52" fill="transparent"/>
+    <text x="2" y="42" font-family="Arial Black,Arial,sans-serif" font-size="34"
+          font-weight="900" fill="#007CC3" letter-spacing="-1.5">infosys</text>
+  </svg>
+  <div style="border-left:2px solid #CBD5E1;padding-left:10px;line-height:1.25;">
+    <div style="font-size:.62rem;color:#64748B;text-transform:uppercase;letter-spacing:1.2px;font-weight:600;">An</div>
+    <div style="font-size:.8rem;font-weight:800;color:#0D1B2A;letter-spacing:.3px;">Travel &amp; Hospitality</div>
+    <div style="font-size:.62rem;color:#64748B;text-transform:uppercase;letter-spacing:1.2px;font-weight:600;">Initiative</div>
+  </div>
+</div>
+"""
+
+INFOSYS_SIDEBAR_HTML = """
+<div style="text-align:center;padding:10px 0 4px;">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 52" width="100" height="26">
+    <text x="2" y="42" font-family="Arial Black,Arial,sans-serif" font-size="34"
+          font-weight="900" fill="#64B5F6" letter-spacing="-1.5">infosys</text>
+  </svg>
+  <div style="font-size:.68rem;color:#90CAF9;margin-top:2px;letter-spacing:.8px;">
+    Travel &amp; Hospitality Initiative
+  </div>
+</div>
+"""
+
+def show_login():
+    """Render login page."""
+    st.markdown("""
+    <style>
+    .stApp { background: linear-gradient(135deg,#0D1B2A 0%,#1A2E45 50%,#0D3B6E 100%) !important; }
+    [data-testid="stSidebar"] { display: none; }
+    header { display: none; }
+    .login-card {
+        background: rgba(255,255,255,0.96);
+        border-radius: 20px;
+        padding: 44px 40px 36px;
+        box-shadow: 0 24px 80px rgba(0,0,0,0.35);
+        max-width: 440px;
+        margin: 0 auto;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
+    # Centre vertically
+    st.markdown("<div style='height:60px'></div>", unsafe_allow_html=True)
+    _, mid, _ = st.columns([1, 1.6, 1])
+    with mid:
+        st.markdown("""
+        <div class="login-card">
+
+          <!-- Infosys brand -->
+          <div style="text-align:center;margin-bottom:6px;">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 52" width="130" height="34">
+              <text x="2" y="42" font-family="Arial Black,Arial,sans-serif" font-size="34"
+                    font-weight="900" fill="#007CC3" letter-spacing="-1.5">infosys</text>
+            </svg>
+          </div>
+          <div style="text-align:center;font-size:.72rem;color:#64748B;letter-spacing:1.2px;
+                      text-transform:uppercase;font-weight:600;margin-bottom:24px;">
+            Travel &amp; Hospitality Initiative
+          </div>
+
+          <!-- Product logo -->
+          <div style="text-align:center;margin-bottom:8px;">
+            <div style="display:inline-flex;align-items:center;justify-content:center;
+                        width:62px;height:62px;border-radius:50%;
+                        background:linear-gradient(145deg,#1565C0,#0D1B2A);
+                        box-shadow:0 8px 24px rgba(21,101,192,0.35);margin-bottom:12px;">
+              <span style="font-size:26px;">📊</span>
+            </div>
+          </div>
+          <div style="text-align:center;font-size:1.45rem;font-weight:900;color:#0D1B2A;
+                      letter-spacing:.3px;margin-bottom:4px;">LTB Analytics Platform</div>
+          <div style="text-align:center;font-size:.82rem;color:#64748B;margin-bottom:28px;">
+            Look-to-Book Intelligence · Air Canada NDC
+          </div>
+          <hr style="border:none;border-top:1px solid #E2E8F0;margin-bottom:24px;">
+        </div>
+        """, unsafe_allow_html=True)
+
+        with st.form("login_form"):
+            username = st.text_input("👤 Username", placeholder="Enter username")
+            password = st.text_input("🔒 Password", type="password", placeholder="Enter password")
+            if st.session_state["login_error"]:
+                st.markdown('<div style="color:#C62828;font-size:.82rem;text-align:center;margin-top:-8px;">❌ Invalid credentials. Please try again.</div>', unsafe_allow_html=True)
+            submitted = st.form_submit_button("Sign In →", use_container_width=True, type="primary")
+            if submitted:
+                if username == "Admin" and password == "Admin@123":
+                    st.session_state["authenticated"] = True
+                    st.session_state["login_error"]   = False
+                    st.rerun()
+                else:
+                    st.session_state["login_error"] = True
+                    st.rerun()
+
+        st.markdown("""
+        <div style="text-align:center;margin-top:16px;font-size:.75rem;color:rgba(255,255,255,0.45);">
+          Demo credentials: <strong style="color:rgba(255,255,255,0.65);">Admin</strong> /
+          <strong style="color:rgba(255,255,255,0.65);">Admin@123</strong>
+        </div>
+        """, unsafe_allow_html=True)
+
+
+# ── Gate: show login if not authenticated ─────────────────────────────────────
+if not st.session_state["authenticated"]:
+    show_login()
+    st.stop()
+
 # ── Colour tokens ─────────────────────────────────────────────────────────────
 NAVY   = "#0D1B2A"
 BLUE   = "#1565C0"
@@ -69,12 +198,23 @@ html, body, [class*="css"] { font-family: 'Segoe UI', sans-serif; }
 .page-header {
     background: linear-gradient(135deg, #0D1B2A 0%, #1565C0 100%);
     border-radius: 14px;
-    padding: 24px 28px;
+    padding: 20px 28px 14px;
     margin-bottom: 24px;
     color: white;
 }
 .page-header h2 { margin: 0; font-size: 1.55rem; font-weight: 800; }
 .page-header p  { margin: 4px 0 0; opacity: 0.75; font-size: .88rem; }
+.page-header .infosys-bar {
+    display: flex; align-items: center; justify-content: flex-end;
+    margin-top: 12px; padding-top: 10px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    gap: 8px;
+}
+.page-header .infosys-bar svg text { fill: rgba(255,255,255,0.85) !important; }
+.page-header .infosys-bar .inf-label {
+    font-size:.65rem; color:rgba(255,255,255,0.6); text-transform:uppercase;
+    letter-spacing:1.2px; font-weight:600; line-height:1.3;
+}
 
 /* Callout boxes */
 .callout-info   { background:#EFF6FF; border-left:4px solid #1565C0; border-radius:8px; padding:14px 16px; margin:12px 0; }
@@ -280,16 +420,20 @@ if "chat_input_key" not in st.session_state:
 # ══════════════════════════════════════════════════════════════════════════════
 
 with st.sidebar:
+    # Infosys branding at top of sidebar
+    st.markdown(INFOSYS_SIDEBAR_HTML, unsafe_allow_html=True)
+    st.markdown('<hr style="border:none;border-top:1px solid rgba(255,255,255,0.12);margin:4px 0 12px;">', unsafe_allow_html=True)
+
     st.markdown("""
-    <div style="text-align:center;padding:20px 0 16px;">
+    <div style="text-align:center;padding:8px 0 14px;">
       <div style="display:inline-flex;align-items:center;justify-content:center;
-                  width:64px;height:64px;border-radius:50%;
+                  width:52px;height:52px;border-radius:50%;
                   background:linear-gradient(145deg,#1565C0,#0D1B2A);
-                  box-shadow:0 6px 20px rgba(21,101,192,0.4);margin-bottom:12px;">
-        <span style="font-size:28px;">📊</span>
+                  box-shadow:0 6px 20px rgba(21,101,192,0.4);margin-bottom:10px;">
+        <span style="font-size:22px;">📊</span>
       </div>
-      <div style="font-size:1.15rem;font-weight:800;letter-spacing:.5px;">LTB Analytics</div>
-      <div style="font-size:.72rem;opacity:.6;margin-top:2px;">Look-to-Book Intelligence Platform</div>
+      <div style="font-size:1.05rem;font-weight:800;letter-spacing:.5px;">LTB Analytics</div>
+      <div style="font-size:.7rem;opacity:.6;margin-top:2px;">Look-to-Book Intelligence Platform</div>
       <div style="margin-top:8px;"><span class="live-badge">● LIVE DEMO</span></div>
     </div>
     """, unsafe_allow_html=True)
@@ -350,6 +494,13 @@ with st.sidebar:
         st.session_state["anthropic_api_key"] = ak
         st.markdown('<div style="color:#A5D6A7;font-size:.78rem;">✅ AI key configured</div>', unsafe_allow_html=True)
 
+    st.markdown("---")
+    if st.button("🚪 Sign Out", use_container_width=True, key="logout_btn"):
+        st.session_state["authenticated"] = False
+        st.session_state["login_error"]   = False
+        st.rerun()
+    st.markdown('<div style="font-size:.7rem;opacity:.45;text-align:center;margin-top:4px;">Signed in as Admin</div>', unsafe_allow_html=True)
+
 
 # ── Filter data based on sidebar ──────────────────────────────────────────────
 view_df = summary.copy()
@@ -374,6 +525,14 @@ with tabs[0]:
     <div class="page-header">
       <h2>📊 Executive Dashboard</h2>
       <p>Real-time Look-to-Book intelligence across all sellers and routes</p>
+      <div class="infosys-bar">
+        <div class="inf-label">An</div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 52" width="82" height="21">
+          <text x="2" y="42" font-family="Arial Black,Arial,sans-serif" font-size="34"
+                font-weight="900" fill="rgba(255,255,255,0.85)" letter-spacing="-1.5">infosys</text>
+        </svg>
+        <div class="inf-label">Travel &amp; Hospitality<br>Initiative</div>
+      </div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -503,6 +662,14 @@ with tabs[1]:
     <div class="page-header">
       <h2>📊 LTB Analytics — Detailed View</h2>
       <p>Daily and rolling Look-to-Book ratios per seller per route</p>
+      <div class="infosys-bar">
+        <div class="inf-label">An</div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 52" width="82" height="21">
+          <text x="2" y="42" font-family="Arial Black,Arial,sans-serif" font-size="34"
+                font-weight="900" fill="rgba(255,255,255,0.85)" letter-spacing="-1.5">infosys</text>
+        </svg>
+        <div class="inf-label">Travel &amp; Hospitality<br>Initiative</div>
+      </div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -607,6 +774,14 @@ with tabs[2]:
     <div class="page-header">
       <h2>📈 Charts & Trends</h2>
       <p>30-day LTB trend analysis per seller and route</p>
+      <div class="infosys-bar">
+        <div class="inf-label">An</div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 52" width="82" height="21">
+          <text x="2" y="42" font-family="Arial Black,Arial,sans-serif" font-size="34"
+                font-weight="900" fill="rgba(255,255,255,0.85)" letter-spacing="-1.5">infosys</text>
+        </svg>
+        <div class="inf-label">Travel &amp; Hospitality<br>Initiative</div>
+      </div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -737,6 +912,14 @@ with tabs[3]:
     <div class="page-header">
       <h2>⚖️ Rule Engine — Routing Decision Control</h2>
       <p>ATPCO-style priority rules — first matching rule wins. No code changes needed.</p>
+      <div class="infosys-bar">
+        <div class="inf-label">An</div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 52" width="82" height="21">
+          <text x="2" y="42" font-family="Arial Black,Arial,sans-serif" font-size="34"
+                font-weight="900" fill="rgba(255,255,255,0.85)" letter-spacing="-1.5">infosys</text>
+        </svg>
+        <div class="inf-label">Travel &amp; Hospitality<br>Initiative</div>
+      </div>
     </div>
     """, unsafe_allow_html=True)
 
@@ -870,6 +1053,14 @@ with tabs[4]:
     <div class="page-header">
       <h2>🤖 AI Insights — Powered by Claude</h2>
       <p>Intelligent analysis and recommendations based on your LTB data and routing rules</p>
+      <div class="infosys-bar">
+        <div class="inf-label">An</div>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 52" width="82" height="21">
+          <text x="2" y="42" font-family="Arial Black,Arial,sans-serif" font-size="34"
+                font-weight="900" fill="rgba(255,255,255,0.85)" letter-spacing="-1.5">infosys</text>
+        </svg>
+        <div class="inf-label">Travel &amp; Hospitality<br>Initiative</div>
+      </div>
     </div>
     """, unsafe_allow_html=True)
 

@@ -549,7 +549,7 @@ with tabs[0]:
     st.markdown("""
     <div class="page-header">
       <h2>📊 Executive Dashboard</h2>
-      <p>Real-time Look-to-Book intelligence across all sellers and routes"}</p>
+      <p>Real-time Look-to-Book intelligence across all sellers and routes</p>
       
     </div>
     """, unsafe_allow_html=True)

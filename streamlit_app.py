@@ -230,6 +230,33 @@ html, body, [class*="css"] { font-family: 'Segoe UI', sans-serif; }
     border-radius:12px; padding:2px 10px; font-size:.72rem;
     font-weight:700; animation: pulse 2.5s infinite;
 }
+
+/* ── Fix: Sidebar selectbox – force dark bg so light text is always readable ── */
+[data-testid="stSidebar"] div[data-baseweb="select"] > div:first-child {
+    background-color: rgba(255,255,255,0.08) !important;
+    border: 1px solid rgba(255,255,255,0.18) !important;
+}
+
+/* Selected value & placeholder inside selectbox – must be light to read on dark bg */
+[data-testid="stSidebar"] div[data-baseweb="select"] [class*="singleValue"],
+[data-testid="stSidebar"] div[data-baseweb="select"] [class*="placeholder"],
+[data-testid="stSidebar"] div[data-baseweb="select"] [class*="Input"],
+[data-testid="stSidebar"] div[data-baseweb="select"] input {
+    color: #E0E8F0 !important;
+    -webkit-text-fill-color: #E0E8F0 !important;
+}
+
+/* Dropdown open – option list items (white bg) need dark text */
+ul[role="listbox"] li,
+ul[role="listbox"] li * {
+    color: #0D1B2A !important;
+}
+/* Hover/selected state in open dropdown */
+ul[role="listbox"] li[aria-selected="true"],
+ul[role="listbox"] li:hover {
+    background-color: #DBEAFE !important;
+    color: #0D1B2A !important;
+}
 </style>
 """, unsafe_allow_html=True)
 

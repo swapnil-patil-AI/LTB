@@ -549,11 +549,8 @@ with tabs[0]:
     st.markdown("""
     <div class="page-header">
       <h2>📊 Executive Dashboard</h2>
-      <p>Real-time Look-to-Book intelligence{f" — filtered: <strong>{_filter_ctx.strip(' ·')}</strong>" if _filter_ctx else " across all sellers and routes"}</p>
-      <div class="infosys-bar">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgODAiPgogIDx0ZXh0IHg9IjEwIiB5PSI2MiIgZm9udC1mYW1pbHk9IkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSIzMDAiIAogICAgICAgIGZvbnQtc2l6ZT0iNjgiIGZpbGw9IiMwMDdDQzMiIGxldHRlci1zcGFjaW5nPSItMSI+SW5mb3N5czwvdGV4dD4KICA8dGV4dCB4PSIyODUiIHk9IjMwIiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjMwMCIKICAgICAgICBmb250LXNpemU9IjIyIiBmaWxsPSIjMDA3Q0MzIj4mIzE3NDs8L3RleHQ+Cjwvc3ZnPg==" style="height:44px;margin-bottom:8px;display:block;margin-left:auto;margin-right:auto;">
-        <div class="inf-label">Travel &amp; Hospitality<br>Initiative</div>
-      </div>
+      <p>Real-time Look-to-Book intelligence across all sellers and routes"}</p>
+      
     </div>
     """, unsafe_allow_html=True)
 
@@ -685,10 +682,7 @@ with tabs[1]:
     <div class="page-header">
       <h2>📊 LTB Analytics — Detailed View</h2>
       <p>Daily and rolling Look-to-Book ratios per seller per route</p>
-      <div class="infosys-bar">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgODAiPgogIDx0ZXh0IHg9IjEwIiB5PSI2MiIgZm9udC1mYW1pbHk9IkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSIzMDAiIAogICAgICAgIGZvbnQtc2l6ZT0iNjgiIGZpbGw9IiMwMDdDQzMiIGxldHRlci1zcGFjaW5nPSItMSI+SW5mb3N5czwvdGV4dD4KICA8dGV4dCB4PSIyODUiIHk9IjMwIiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjMwMCIKICAgICAgICBmb250LXNpemU9IjIyIiBmaWxsPSIjMDA3Q0MzIj4mIzE3NDs8L3RleHQ+Cjwvc3ZnPg==" style="height:44px;margin-bottom:8px;display:block;margin-left:auto;margin-right:auto;">
-        <div class="inf-label">Travel &amp; Hospitality<br>Initiative</div>
-      </div>
+      
     </div>
     """, unsafe_allow_html=True)
 
@@ -793,10 +787,7 @@ with tabs[2]:
     <div class="page-header">
       <h2>📈 Charts & Trends</h2>
       <p>30-day LTB trend analysis per seller and route</p>
-      <div class="infosys-bar">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgODAiPgogIDx0ZXh0IHg9IjEwIiB5PSI2MiIgZm9udC1mYW1pbHk9IkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSIzMDAiIAogICAgICAgIGZvbnQtc2l6ZT0iNjgiIGZpbGw9IiMwMDdDQzMiIGxldHRlci1zcGFjaW5nPSItMSI+SW5mb3N5czwvdGV4dD4KICA8dGV4dCB4PSIyODUiIHk9IjMwIiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjMwMCIKICAgICAgICBmb250LXNpemU9IjIyIiBmaWxsPSIjMDA3Q0MzIj4mIzE3NDs8L3RleHQ+Cjwvc3ZnPg==" style="height:44px;margin-bottom:8px;display:block;margin-left:auto;margin-right:auto;">
-        <div class="inf-label">Travel &amp; Hospitality<br>Initiative</div>
-      </div>
+      
     </div>
     """, unsafe_allow_html=True)
 
@@ -941,10 +932,7 @@ with tabs[3]:
     <div class="page-header">
       <h2>⚖️ Rule Engine — Routing Decision Control</h2>
       <p>ATPCO-style priority rules — first matching rule wins. No code changes needed.</p>
-      <div class="infosys-bar">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgODAiPgogIDx0ZXh0IHg9IjEwIiB5PSI2MiIgZm9udC1mYW1pbHk9IkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSIzMDAiIAogICAgICAgIGZvbnQtc2l6ZT0iNjgiIGZpbGw9IiMwMDdDQzMiIGxldHRlci1zcGFjaW5nPSItMSI+SW5mb3N5czwvdGV4dD4KICA8dGV4dCB4PSIyODUiIHk9IjMwIiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjMwMCIKICAgICAgICBmb250LXNpemU9IjIyIiBmaWxsPSIjMDA3Q0MzIj4mIzE3NDs8L3RleHQ+Cjwvc3ZnPg==" style="height:44px;margin-bottom:8px;display:block;margin-left:auto;margin-right:auto;">
-        <div class="inf-label">Travel &amp; Hospitality<br>Initiative</div>
-      </div>
+      
     </div>
     """, unsafe_allow_html=True)
 
@@ -1078,10 +1066,7 @@ with tabs[4]:
     <div class="page-header">
       <h2>🤖 AI Insights — Powered by Claude</h2>
       <p>Intelligent analysis and recommendations based on your LTB data and routing rules</p>
-      <div class="infosys-bar">
-        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAzMDAgODAiPgogIDx0ZXh0IHg9IjEwIiB5PSI2MiIgZm9udC1mYW1pbHk9IkFyaWFsLCBIZWx2ZXRpY2EsIHNhbnMtc2VyaWYiIGZvbnQtd2VpZ2h0PSIzMDAiIAogICAgICAgIGZvbnQtc2l6ZT0iNjgiIGZpbGw9IiMwMDdDQzMiIGxldHRlci1zcGFjaW5nPSItMSI+SW5mb3N5czwvdGV4dD4KICA8dGV4dCB4PSIyODUiIHk9IjMwIiBmb250LWZhbWlseT0iQXJpYWwsIEhlbHZldGljYSwgc2Fucy1zZXJpZiIgZm9udC13ZWlnaHQ9IjMwMCIKICAgICAgICBmb250LXNpemU9IjIyIiBmaWxsPSIjMDA3Q0MzIj4mIzE3NDs8L3RleHQ+Cjwvc3ZnPg==" style="height:44px;margin-bottom:8px;display:block;margin-left:auto;margin-right:auto;">
-        <div class="inf-label">Travel &amp; Hospitality<br>Initiative</div>
-      </div>
+     
     </div>
     """, unsafe_allow_html=True)
 
